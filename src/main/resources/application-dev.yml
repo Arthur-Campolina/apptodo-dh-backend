@@ -1,0 +1,33 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    show-sql: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/multitecnica_inspecao_de_processos
+    username: postgres
+    password: root
+  mail:
+    host: smtp.mailtrap.io
+    port: 587
+    username: 69dde0cd9294b6
+    password: 84af6233b997f2
+    default-encoding: UTF-8
+    jndi-name: mail/Session
+    test-connection: true
+security:
+  oauth2:
+    client:
+      client-id: todo
+      client-secret: todo123
+jwt:
+  secret: MY-JWT-SCRET
+  duration: 2592000
+host:
+  full:
+    dns:
+      auth:
+        link: /api/v1
+front:
+  url: http://localhost:3000/trocar-senha/

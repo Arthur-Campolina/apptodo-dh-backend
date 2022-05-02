@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  mail:
+    host: smtp.mailtrap.io
+    port: 587
+    username: admin
+    password: admin123
+    default-encoding: UTF-8
+    jndi-name: mail/Session
+    test-connection: true
+  jpa:
+    show-sql: false
+    roperties:
+      hibernate:
+        format_sql: false
+security:
+  oauth2:
+    client:
+      client-id: apptododh
+      client-secret: apptododh123
+jwt:
+  secret: MY-JWT-SECRET
+  duration: 2592000
+
+front:
+  url: ${URL_FRONT:todo}
