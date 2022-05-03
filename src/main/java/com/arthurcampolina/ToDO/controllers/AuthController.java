@@ -1,10 +1,10 @@
 package com.arthurcampolina.ToDO.controllers;
 
+import com.arthurcampolina.ToDO.services.impl.AuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.arthurcampolina.ToDO.services.impl.AuthServiceImpl;
 
 @RestController
 @RequestMapping("/auth")

@@ -2,12 +2,9 @@ package com.arthurcampolina.ToDO.services;
 
 import com.arthurcampolina.ToDO.dtos.TaskDTO;
 import com.arthurcampolina.ToDO.entities.Task;
-import com.arthurcampolina.ToDO.entities.Task;
-import com.arthurcampolina.ToDO.entities.User;
 import com.arthurcampolina.ToDO.exceptions.DataBaseException;
 import com.arthurcampolina.ToDO.exceptions.NotFoundException;
 import com.arthurcampolina.ToDO.repositories.TaskRepository;
-import com.arthurcampolina.ToDO.dtos.TaskDTO;
 import com.arthurcampolina.ToDO.services.impl.TaskServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;

@@ -1,6 +1,6 @@
-package com.arthurcampolina.ToDO.configs;
+package com.insannity.dscatalog.config;
 
-import com.arthurcampolina.ToDO.configs.components.JwtTokenEnhancer;
+import com.insannity.dscatalog.components.JwtTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +20,7 @@ import java.util.Arrays;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+
     @Value("${security.oauth2.client.client-id}")
     private String clientId;
     @Value("${security.oauth2.client.client-secret}")
@@ -28,20 +29,20 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private Integer jwtDuration;
 
 
-    private final BCryptPasswordEncoder passwordEncoder;
-    private final JwtAccessTokenConverter accessTokenConverter;
-    private final JwtTokenStore tokenStore;
-    private final AuthenticationManager authenticationManager;
-    private final JwtTokenEnhancer jwtTokenEnhancer;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public AuthorizationServerConfig(BCryptPasswordEncoder passwordEncoder, JwtAccessTokenConverter accessTokenConverter, JwtTokenStore tokenStore, AuthenticationManager authenticationManager, JwtTokenEnhancer jwtTokenEnhancer) {
-        this.passwordEncoder = passwordEncoder;
-        this.accessTokenConverter = accessTokenConverter;
-        this.tokenStore = tokenStore;
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenEnhancer = jwtTokenEnhancer;
-    }
+    private JwtAccessTokenConverter accessTokenConverter;
+
+    @Autowired
+    private JwtTokenStore tokenStore;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtTokenEnhancer jwtTokenEnhancer;
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {

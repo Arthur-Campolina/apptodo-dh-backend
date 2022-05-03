@@ -1,11 +1,10 @@
 package com.arthurcampolina.ToDO.services;
 
 import com.arthurcampolina.ToDO.dtos.UserDTO;
-import com.arthurcampolina.ToDO.dtos.UserDTO;
-import com.arthurcampolina.ToDO.entities.User;
 import com.arthurcampolina.ToDO.entities.User;
 import com.arthurcampolina.ToDO.exceptions.DataBaseException;
 import com.arthurcampolina.ToDO.exceptions.NotFoundException;
+import com.arthurcampolina.ToDO.repositories.UserRepository;
 import com.arthurcampolina.ToDO.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -15,7 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.arthurcampolina.ToDO.repositories.UserRepository;
 
 @Service
 public class UserService implements UserServiceImpl {

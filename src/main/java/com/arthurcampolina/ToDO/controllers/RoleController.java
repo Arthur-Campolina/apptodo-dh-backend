@@ -1,6 +1,7 @@
 package com.arthurcampolina.ToDO.controllers;
 
 import com.arthurcampolina.ToDO.dtos.RoleDTO;
+import com.arthurcampolina.ToDO.services.impl.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import com.arthurcampolina.ToDO.services.impl.RoleServiceImpl;
 
 import java.net.URI;
 

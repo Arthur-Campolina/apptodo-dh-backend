@@ -1,5 +1,5 @@
 package com.arthurcampolina.ToDO.dtos;
-import com.arthurcampolina.ToDO.entities.Task;
+
 import com.arthurcampolina.ToDO.entities.User;
 import lombok.*;
 

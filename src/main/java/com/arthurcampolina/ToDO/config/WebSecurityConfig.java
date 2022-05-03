@@ -1,4 +1,4 @@
-package com.arthurcampolina.ToDO.configs;
+package com.insannity.dscatalog.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,15 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final BCryptPasswordEncoder passwordEncoder;
-
-    private final UserDetailsService userDetailsService;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public WebSecurityConfig(BCryptPasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
-        this.passwordEncoder = passwordEncoder;
-        this.userDetailsService = userDetailsService;
-    }
+    private UserDetailsService userDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -33,9 +29,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/actuator/**");
-        web.ignoring().antMatchers("/h2-console/**");
-        web.ignoring().antMatchers("/", "/login**", "/oauth/token", "/oauth/**");
-        web.ignoring().antMatchers("/swagger-ui/**", "/swagger-ui**", "/swagger-resources/**", "/v3/api-docs", "/v3/api-docs/**", "/webjars/**");
     }
 
     @Override
@@ -44,4 +37,3 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
 }
-

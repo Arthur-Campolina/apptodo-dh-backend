@@ -1,8 +1,8 @@
 package com.arthurcampolina.ToDO.controllers;
 
 
-import com.arthurcampolina.ToDO.services.impl.UserServiceImpl;
 import com.arthurcampolina.ToDO.dtos.UserDTO;
+import com.arthurcampolina.ToDO.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
