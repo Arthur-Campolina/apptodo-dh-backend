@@ -1,6 +1,7 @@
-package com.insannity.dscatalog.config;
+package com.arthurcampolina.ToDO.config;
 
-import com.insannity.dscatalog.components.JwtTokenEnhancer;
+
+import com.arthurcampolina.ToDO.components.JwtTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

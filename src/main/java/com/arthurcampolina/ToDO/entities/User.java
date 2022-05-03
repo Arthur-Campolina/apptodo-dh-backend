@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 @ToString
 @Entity
 @Table(name = "tb_users")
-public class User extends AbstractEntity implements UserDetails {
+public class User extends AbstractEntity implements UserDetails, Serializable {
 
     @Email
     @Column(unique = true)

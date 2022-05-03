@@ -1,4 +1,4 @@
-package com.insannity.dscatalog.config;
+package com.arthurcampolina.ToDO.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -8,7 +8,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
-@SuppressWarnings("deprecated")
 public class AppConfig {
 
     @Value("${jwt.secret}")

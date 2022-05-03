@@ -3,13 +3,14 @@ package com.arthurcampolina.ToDO.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 
 
 @Data
 @Entity
 @Table(name = "tb_tasks")
-public class Task {
+public class Task implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

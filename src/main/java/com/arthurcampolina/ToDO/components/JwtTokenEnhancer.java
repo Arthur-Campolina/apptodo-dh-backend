@@ -1,7 +1,8 @@
-package com.insannity.dscatalog.components;
+package com.arthurcampolina.ToDO.components;
 
-import com.insannity.dscatalog.entities.User;
-import com.insannity.dscatalog.repositories.UserRepository;
+
+import com.arthurcampolina.ToDO.entities.User;
+import com.arthurcampolina.ToDO.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -22,7 +23,7 @@ public class JwtTokenEnhancer implements TokenEnhancer {
     public OAuth2AccessToken enhance(OAuth2AccessToken oAuth2AccessToken, OAuth2Authentication oAuth2Authentication) {
         User user = userRepository.findByEmail(oAuth2Authentication.getName());
         Map<String, Object> map = new HashMap<>();
-        map.put("userName", user.getName());
+        map.put("userName", user.getFirstName());
         map.put("userId", user.getId());
 
         DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) oAuth2AccessToken;
