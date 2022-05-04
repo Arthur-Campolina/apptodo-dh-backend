@@ -10,8 +10,8 @@ insert into tb_users_roles values (1, 1);
 insert into tb_users_roles values (2, 2);
 insert into tb_users_roles values (3, 2);
 
-insert into tb_tasks values (1, false, now(), 'estudar java', 1);
-insert into tb_tasks values (2, false, now(), 'estudar react js', 1);
-insert into tb_tasks values (3, false, now(), 'jogar bola', 2);
-insert into tb_tasks values (4, false, now(), 'finalizar tarefa', 2);
-insert into tb_tasks values (5, false, now(), 'levar o carro no mecanico', 3);
+insert into tb_tasks values (1, now(), now(), false, 'estudar java', 1);
+insert into tb_tasks values (2, now(), now(), false, 'estudar react js', 1);
+insert into tb_tasks values (3, now(), now(), false, 'jogar bola', 2);
+insert into tb_tasks values (4, now(), now(), false, 'finalizar tarefa', 2);
+insert into tb_tasks values (5, now(), now(), false, 'levar o carro no mecanico', 3);

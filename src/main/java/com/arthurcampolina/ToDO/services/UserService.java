@@ -1,6 +1,8 @@
 package com.arthurcampolina.ToDO.services;
 
 import com.arthurcampolina.ToDO.dtos.UserDTO;
+import com.arthurcampolina.ToDO.dtos.UserEditDTO;
+import com.arthurcampolina.ToDO.dtos.UserFindDTO;
 import com.arthurcampolina.ToDO.entities.User;
 import com.arthurcampolina.ToDO.exceptions.DataBaseException;
 import com.arthurcampolina.ToDO.exceptions.NotFoundException;
@@ -17,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +30,9 @@ public class UserService implements UserServiceImpl, UserDetailsService {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Transactional(readOnly = true)
     public Page<UserDTO> findAll(Pageable page){
@@ -39,21 +45,21 @@ public class UserService implements UserServiceImpl, UserDetailsService {
         return new UserDTO(user);
     }
 
-    public UserDTO update(Integer id, UserDTO dto) {
+    public UserDTO update(Integer id, UserEditDTO dto) {
         User user = repository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
         copyDtoToEntity(dto, user);
         user = repository.save(user);
         return new UserDTO(user);
     }
 
-    public UserDTO save(UserDTO dto, Authentication auth) {
+    public UserDTO save(UserEditDTO dto) {
         User user = new User();
         copyDtoToEntity(dto, user);
         user = repository.save(user);
         return new UserDTO(user);
     }
 
-    public void delete(Integer id) {
+    public void delete(Integer id, Authentication auth) {
         try {
             repository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
@@ -63,12 +69,12 @@ public class UserService implements UserServiceImpl, UserDetailsService {
         }
     }
 
-    private void copyDtoToEntity(UserDTO dto, User entity) {
-        entity.setId(dto.getId());
+    private void copyDtoToEntity(UserEditDTO dto, User entity) {
+
         entity.setFirstName(dto.getFirstName());
         entity.setLastName(dto.getLastName());
         entity.setEmail(dto.getEmail());
-        entity.setPassword(dto.getPassword());
+        entity.setPassword(passwordEncoder.encode(dto.getPassword()));
     }
 
     @Override

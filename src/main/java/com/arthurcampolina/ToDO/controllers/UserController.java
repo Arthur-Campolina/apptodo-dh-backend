@@ -2,6 +2,8 @@ package com.arthurcampolina.ToDO.controllers;
 
 
 import com.arthurcampolina.ToDO.dtos.UserDTO;
+import com.arthurcampolina.ToDO.dtos.UserEditDTO;
+import com.arthurcampolina.ToDO.dtos.UserFindDTO;
 import com.arthurcampolina.ToDO.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,20 +39,20 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> novo (@RequestBody UserDTO UserDTO, Authentication auth){
-        UserDTO User = service.save(UserDTO, auth);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(User.getId()).toUri();
-        return ResponseEntity.created(uri).body(User);
+    public ResponseEntity<UserDTO> novo (@RequestBody UserEditDTO userDTO){
+        UserDTO user = service.save(userDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+        return ResponseEntity.created(uri).body(user);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> update (@PathVariable Integer id, @RequestBody UserDTO UserDTO){
-        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, UserDTO));
+    public ResponseEntity<UserDTO> update (@PathVariable Integer id, @RequestBody UserEditDTO userDTO){
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, userDTO));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Integer id){
-        service.delete(id);
+    public ResponseEntity<?> delete(@PathVariable Integer id, Authentication auth){
+        service.delete(id, auth);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

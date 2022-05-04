@@ -7,9 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 
 public interface TaskServiceImpl {
-    Page<TaskDTO> findAll(Pageable pageable);
-    TaskDTO findById(Integer id);
+    Page<TaskDTO> findAll(Pageable pageable, Authentication auth);
+    TaskDTO findById(Integer id, Authentication auth);
     TaskDTO save(TaskDTO dto, Authentication auth);
-    TaskDTO update(Integer id, TaskDTO dto);
-    void delete(Integer id);
+    TaskDTO update(Integer id, TaskDTO dto, Authentication auth);
+    void delete(Integer id, Authentication auth);
+    void updateStatus(Integer id, Authentication auth);
 }

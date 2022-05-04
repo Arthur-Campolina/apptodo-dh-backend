@@ -26,14 +26,14 @@ public class TaskController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<TaskDTO>> findAll(Pageable pageable) {
-        Page<TaskDTO> page = service.findAll(pageable);
+    public ResponseEntity<Page<TaskDTO>> findAll(Pageable pageable, Authentication auth) {
+        Page<TaskDTO> page = service.findAll(pageable, auth);
         return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TaskDTO> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok(service.findById(id));
+    public ResponseEntity<TaskDTO> findById(@PathVariable Integer id, Authentication auth) {
+        return ResponseEntity.ok(service.findById(id, auth));
     }
 
     @PostMapping
@@ -44,13 +44,19 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TaskDTO> update (@PathVariable Integer id, @RequestBody TaskDTO TaskDTO){
-        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, TaskDTO));
+    public ResponseEntity<TaskDTO> update (@PathVariable Integer id, @RequestBody TaskDTO TaskDTO, Authentication auth){
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, TaskDTO, auth));
+    }
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<?> updateStatus (@PathVariable Integer id, Authentication auth){
+        service.updateStatus(id, auth);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Integer id){
-        service.delete(id);
+    public ResponseEntity<?> delete(@PathVariable Integer id, Authentication auth){
+        service.delete(id, auth);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

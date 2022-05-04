@@ -18,9 +18,6 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
-    @Setter(AccessLevel.PROTECTED)
-    private Set<TaskDTO> tasks = new LinkedHashSet<>();
 
     public UserDTO(User entity) {
 
@@ -28,15 +25,5 @@ public class UserDTO {
         this.firstName = entity.getFirstName();
         this.lastName = entity.getLastName();
         this.email = entity.getEmail();
-        this.password = entity.getPassword();
-        entity.getTasks().forEach(task -> this.addTask(new TaskDTO(task)));
-    }
-
-    public void addTask(TaskDTO dto) {
-        this.tasks.add(dto);
-    }
-
-    public void removeTask(TaskDTO dto) {
-        this.tasks.remove(dto);
     }
 }

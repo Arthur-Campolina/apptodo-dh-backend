@@ -6,7 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
@@ -22,30 +22,43 @@ import java.util.stream.Collectors;
 @ToString
 @Entity
 @Table(name = "tb_users")
-public class User extends AbstractEntity implements UserDetails, Serializable {
+public class User extends AbstractEntity implements UserDetails {
 
     @Email
+    @NotNull
+    @NotEmpty
+    @NotBlank
     @Column(unique = true)
+    @Size(max = 50)
     private String email;
+
+    @Size(max = 50)
     private String firstName;
+
+    @Size(max = 50)
     private String lastName;
+
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    @Size(min = 8, max = 150)
+    @Column(nullable = false)
     private String password;
 
-    @OneToMany(orphanRemoval = true)
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Task> tasks = new LinkedHashSet<>();
 
     @Setter(AccessLevel.NONE)
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "tb_users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
+    @JoinTable(name = "tb_users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
     private Boolean isActive;
 
-    public void addRole(Role role){
+    public void addRole(Role role) {
         roles.add(role);
     }
 
-    public void removeRole(Role role){
+    public void removeRole(Role role) {
         roles.remove(role);
     }
 
