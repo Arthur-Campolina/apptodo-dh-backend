@@ -41,7 +41,7 @@ public class User extends AbstractEntity implements UserDetails {
     @NotNull
     @NotEmpty
     @NotBlank
-    @Size(min = 8, max = 150)
+    @Size(min = 5, max = 150)
     @Column(nullable = false)
     private String password;
 
