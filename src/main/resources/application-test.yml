@@ -7,6 +7,14 @@ spring:
     console:
       enabled: true
       path: /h2-console
+  mail:
+    host: smtp.mailtrap.io
+    port: 587
+    username: 1101264b6d2b42
+    password: 226cbc00bd57ff
+    default-encoding: UTF-8
+    jndi-name: mail/Session
+    test-connection: true
   jpa:
     show-sql: false
     roperties:
@@ -15,11 +23,8 @@ spring:
 security:
   oauth2:
     client:
-      client-id: apptododh
-      client-secret: apptododh123
+      client-id: multitecnica
+      client-secret: multitecnica123
 jwt:
   secret: MY-JWT-SECRET
   duration: 2592000
-
-front:
-  url: ${URL_FRONT:todo}
