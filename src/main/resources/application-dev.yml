@@ -5,9 +5,9 @@ pring:
     database: postgresql
     show-sql: false
   datasource:
-    url: jdbc:postgresql://localhost:5432/multitecnica_inspecao_de_processos
-    username: postgres
-    password: root
+    url: 
+    username: 
+    password: 
   mail:
     host: smtp.mailtrap.io
     port: 587
